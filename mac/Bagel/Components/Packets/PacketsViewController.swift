@@ -103,7 +103,24 @@ class PacketsViewController: BaseViewController {
     }
     
     @IBAction func clearButtonAction(_ sender: Any) {
-        self.viewModel?.clearPackets()
+//         self.viewModel?.clearPackets()
+        let selectedRow = tableView.selectedRow
+        
+        guard selectedRow >= 0,
+            let item = self.viewModel?.item(at: selectedRow) else {
+                
+                return
+        }
+        
+        if  let bagelPacketId = item.packetId {
+            
+            self.viewModel?.removePacket(packetId: bagelPacketId)
+            self.tableView.reloadData()
+            return
+        }
+        
+        guard item !== self.viewModel?.selectedItem else { return }
+        
     }
     
 }
