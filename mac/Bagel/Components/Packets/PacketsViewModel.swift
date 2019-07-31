@@ -32,6 +32,11 @@ class PacketsViewModel: BaseListViewModel<BagelPacket>  {
         return BagelController.shared.selectedProjectController?.selectedDeviceController?.packets ?? []
     }
     
+    func removePacket(packetId: String) {
+        
+        _ = BagelController.shared.selectedProjectController?.selectedDeviceController?.removePacket(packetId: packetId)
+        refreshItems()
+    }
     
     func register() {
         NotificationCenter.default.addObserver(self, selector: #selector(self.refreshItems), name: BagelNotifications.didGetPacket, object: nil)
