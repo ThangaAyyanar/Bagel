@@ -50,6 +50,19 @@ class BagelDeviceController: NSObject {
         return true
     }
     
+    func removePacket(packetId: String) -> Bool {
+        
+        for (index,packet) in self.packets.enumerated() {
+            
+            if packet.packetId == packetId {
+                
+                self.packets.remove(at: index)
+                return true
+            }
+        }
+        return false
+    }
+    
     func clear() {
         
         self.packets.removeAll()
